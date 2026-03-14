@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* La Dolcerie Luxury Palette */
+    --negro: #0A0A0A;
+    --carbon: #1A1A1A;
+    --gris-oscuro: #2C2C2C;
+    --gris-medio: #6B6B6B;
+    --lino: #F2EDE4;
+    --crema: #FAF7F2;
+    --blanco: #FFFFFF;
+    --borgoña: #7C2D3E;
+    --borgoña-suave: #A64D63;
+    
+    /* HSL versions */
+    --negro-hsl: 0 0% 4%;
+    --carbon-hsl: 0 0% 10%;
+    --lino-hsl: 35 33% 93%;
+    --crema-hsl: 40 33% 97%;
+    --borgoña-hsl: 350 44% 31%;
+    --borgoña-suave-hsl: 350 44% 49%;
+    
+    /* Background colors */
+    --background: var(--negro-hsl);
+    --foreground: 0 0% 100%;
+    --card: var(--carbon-hsl);
+    --card-foreground: 0 0% 100%;
+    --popover: var(--carbon-hsl);
+    --popover-foreground: 0 0% 100%;
+    
+    /* Primary - Borgoña */
+    --primary: var(--borgoña-hsl);
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: var(--borgoña-suave-hsl);
+    
+    /* Secondary */
+    --secondary: var(--lino-hsl);
+    --secondary-foreground: var(--negro-hsl);
+    
+    /* Muted */
+    --muted: var(--carbon-hsl);
+    --muted-foreground: 0 0% 60%;
+    
+    /* Accent */
+    --accent: var(--borgoña-hsl);
+    --accent-foreground: 0 0% 100%;
+    
+    /* Border */
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: var(--borgoña-hsl);
+    
+    /* Typography */
+    --font-display: 'Playfair Display', serif;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-medium: 0 8px 30px rgba(0,0,0,0.12);
+    --shadow-strong: 0 12px 40px rgba(0,0,0,0.2);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--carbon);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--borgoña);
+  border-radius: 3px;
+}
+
+/* Animation classes */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+
+/* Scroll indicator animation */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* Review carousel */
+@keyframes scrollLoop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.reviews-carousel {
+  animation: scrollLoop 30s linear infinite;
+}
+
+.reviews-carousel:hover {
+  animation-play-state: paused;
+}
+
+/* Menu reveal animation */
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 5000px; opacity: 1; }
+}
+
+.menu-reveal {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease, opacity 0.5s ease;
+}
+
+.menu-reveal.open {
+  max-height: 5000px;
+  opacity: 1;
+}
+
+/* Grain texture overlay */
+.grain-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cursor */
+.cursor-burgundy {
+  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="4" fill="%237C2D3E"/></svg>') 6 6, auto;
+}
+
+/* Card hover effects */
+.dish-card {
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dish-card:hover {
+  transform: scale(1.04);
+}
+
+.menu-item-card {
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu-item-card:hover {
+  background: var(--crema);
+  color: var(--negro);
+}
+
+/* Button styles */
+.btn-burgundy {
+  background: var(--borgoña);
+  color: white;
+  border: 1px solid var(--borgoña);
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-burgundy:hover {
+  background: transparent;
+  color: var(--borgoña);
+}
+
+.btn-outline-burgundy {
+  background: transparent;
+  color: var(--borgoña);
+  border: 1px solid var(--borgoña);
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-outline-burgundy:hover {
+  background: var(--borgoña);
+  color: white;
+}
+
+.btn-outline-white {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-outline-white:hover {
+  background: white;
+  color: var(--negro);
+}
+
+/* Input styles */
+.input-underline {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--gris-medio);
+  padding: 12px 0;
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: white;
+  transition: border-color 0.35s ease;
+}
+
+.input-underline:focus {
+  outline: none;
+  border-bottom-color: var(--borgoña);
+}
+
+.input-underline::placeholder {
+  color: var(--gris-medio);
+  font-weight: 300;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+/* Category tabs */
+.category-tab {
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.category-tab.active {
+  background: var(--borgoña);
+  color: white;
+}
+
+.category-tab:not(.active) {
+  border-color: var(--lino);
+  color: var(--gris-medio);
+}
+
+.category-tab:not(.active):hover {
+  color: white;
+  border-color: white;
+}
+
+/* Vertical text for sidebars */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+/* Social icon hover */
+.social-icon {
+  transition: color 0.35s ease, transform 0.35s ease;
+}
+
+.social-icon:hover {
+  color: var(--borgoña) !important;
+  transform: scale(1.1);
+}
+
+/* Diamond separator */
+.diamond-separator {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.diamond-separator::before,
+.diamond-separator::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--borgoña);
+}
+
+.diamond-separator::after {
+  flex: 1;
+}
+
+.diamond {
+  width: 8px;
+  height: 8px;
+  background: var(--borgoña);
+  transform: rotate(45deg);
+}
+
+/* Image overlay */
+.image-overlay {
+  position: relative;
+}
+
+.image-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
+  pointer-events: none;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .reviews-carousel {
+    animation: none;
+  }
+}
