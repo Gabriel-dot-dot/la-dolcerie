@@ -752,7 +752,7 @@ function App() {
             <FadeIn>
               <div className="h-[400px] md:h-full">
                 <iframe
-                  src="https://maps.google.com/maps?q=Rafael+Augusto+Sanchez+20+Santo+Domingo&output=embed"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.264797527498!2d-69.9390584!3d18.4703819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf89e3f69ff34b%3A0xf1c7a2f2993acd8b!2sLa%20Dolcerie!5e0!3m2!1ses!2sdo!4v1742068000000!5m2!1ses!2sdo"
                   width="100%"
                   height="100%"
                   style={{ filter: 'grayscale(100%) saturate(0) contrast(1.1)' }}
@@ -798,7 +798,7 @@ function App() {
 
                 <div className="flex gap-4 pt-4">
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=Rafael+Augusto+Sanchez+20+Santo+Domingo"
+                    href="https://www.google.com/maps/dir/?api=1&destination=La+Dolcerie+Santo+Domingo"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 px-6 py-3 border border-white text-white hover:bg-white hover:text-[#0A0A0A] transition-all duration-300 font-['Montserrat'] font-medium text-sm text-center"
